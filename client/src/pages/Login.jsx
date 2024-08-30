@@ -17,11 +17,7 @@ const Login = () => {
             borderRadius: "8px", // Optional: Add rounded corners
           }}
         >
-          <Form
-            formTital={"Login Page"}
-            submitBtn={"Login"}
-            formType={"login"}
-          />
+          <Form formTital={"Login Page"} submitBtn={"Login"} formType={"login"}/>
         </div>
       </div>
     </>

@@ -13,19 +13,15 @@ const Register = () => {
           />
         </div>
         <div
-          className="col-md-4 form-container "
+          className="col-md-4 form-container"
           style={{
-            background: "linear-gradient(to bottom, #FFECD2, #FCB69F)", // Apply gradient background
-            color: "#333", // Ensure text color is visible against gradient
-            padding: "20px", // Optional: Add padding for better spacing
-            borderRadius: "8px", // Optional: Add rounded corners
+            background: "linear-gradient(to bottom, #FFECD2, #FCB69F)",
+            color: "#333",
+            padding: "20px",
+            borderRadius: "8px",
           }}
         >
-          <Form
-            formTital={"Singup Page"}
-            submitBtn={"Singup"}
-            formType={"register"}
-          />
+          <Form formTital={"Signup Page"} submitBtn={"Signup"} formType={"register"} />
         </div>
       </div>
     </>

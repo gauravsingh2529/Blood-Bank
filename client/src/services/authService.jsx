@@ -3,7 +3,6 @@ import {
   userRegister,
 } from "../components/Redux/featurs/authAction";
 import store from "../components/Redux/store";
-
 export const handleLogin = async (e, email, password, role) => {
   e.preventDefault();
 
@@ -61,6 +60,7 @@ export const handleRegister = async ({
     if (userRegister.fulfilled.match(resultAction)) {
       // Handle successful registration
       console.log("Registration successful", resultAction.payload);
+      
       // Optionally navigate to login page or show a success message
     } else {
       // Handle failed registration
