@@ -65,7 +65,7 @@ export const userRegister = createAsyncThunk(
         console.log(data)
         toast.success(data.message);
         // Return the data so it can be used in the component
-        // window.location.replace('/login')
+        window.location.replace('/login')
         return data;
       } else {
         toast.error(data.message);

@@ -18,6 +18,7 @@ const Form = ({ formType, submitBtn, formTital }) => {
     <>
       <form
         onSubmit={(e) => {
+          e.preventDefault(); // Prevent default form submission
           if (formType === "login")
             return handleLogin(e, email, password, role);
           else if (formType === "register")

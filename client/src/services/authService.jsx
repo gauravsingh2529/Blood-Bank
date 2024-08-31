@@ -29,41 +29,36 @@ export const handleLogin = async (e, email, password, role) => {
   }
 };
 
-export const handleRegister = async ({
-  e,
-  email,
-  password,
-  role,
-  name,
-  hospitalName,
-  organizationName,
-  website,
-  address,
-  phone,
-}) => {
+export const handleRegister = async (e, email, password, role, name, hospitalName, organizationName, website, address, phone) => {
   e.preventDefault();
 
+  // Prepare data object conditionally
+  const registrationData = {
+    email,
+    password,
+    role,
+    website,
+    address,
+    phone,
+  };
+
+  if (role === "admin" || role === "donar") {
+    registrationData.name = name;
+  }
+
+  if (role === "hospital") {
+    registrationData.hospitalName = hospitalName;
+  } else if (role === "organization") {
+    registrationData.organizationName = organizationName;
+  }
+
   try {
-    const resultAction = await store.dispatch(
-      userRegister({
-        email,
-        password,
-        role,
-        name,
-        hospitalName,
-        organizationName,
-        website,
-        address,
-        phone,
-      })
-    );
+    const resultAction = await store.dispatch(userRegister(registrationData));
 
     if (userRegister.fulfilled.match(resultAction)) {
-      // Handle successful registration
       console.log("Registration successful", resultAction.payload);
-      // Optionally navigate to login page or show a success message
+      
     } else {
-      // Handle failed registration
       console.error("Registration failed", resultAction.payload);
       alert("Registration failed: " + resultAction.payload);
     }

@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { userLogin, userRegister } from "./authAction";
 
-const token = localStorage.getItem("token")
-  ? localStorage.getItem("token")
-  : null;
+const token = localStorage.getItem("token") || null;
+// ? localStorage.getItem("token")
+// : null;
 
 // Define initial state
 const initialState = {
@@ -24,7 +24,6 @@ const authSlice = createSlice({
       state.error = null;
     },
   },
-  
 
   extraReducers: (builder) => {
     //Login user

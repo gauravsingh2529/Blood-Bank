@@ -19,8 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 //PORT
 
-const PORT = process.env.PORT || 3000;
-
+const PORT = process.env.PORT;
 //ROUTEs
 app.use("/api/v1", authRoute);
 app.use("/api/v1", invantoryRoute);
