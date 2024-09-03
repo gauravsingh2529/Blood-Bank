@@ -2,12 +2,31 @@ const JWT = require("jsonwebtoken");
 
 module.exports = async (req, res, next) => {
   try {
-    const token = req.headers["authorization"].split(" ")[1];
+    // Check if the 'authorization' header is present
+    if (!req.headers["authorization"]) {
+      return res.status(401).json({
+        success: false,
+        message: "No authorization header provided.",
+      });
+    }
+
+    // Extract the token from the header
+    const authHeader = req.headers["authorization"];
+    const token = authHeader.split(" ")[1]; // Assumes 'Bearer token'
+
+    if (!token) {
+      return res.status(401).json({
+        success: false,
+        message: "Token not found in authorization header.",
+      });
+    }
+
+    // Verify the token
     JWT.verify(token, process.env.JWT_SECRET, (err, decode) => {
       if (err) {
         return res.status(401).json({
           success: false,
-          message: "Auth Faildd..",
+          message: "Authentication failed.",
         });
       } else {
         req.body.userId = decode.userId;
@@ -19,7 +38,7 @@ module.exports = async (req, res, next) => {
     return res.status(401).json({
       success: false,
       error,
-      message: "Auth Failed..",
+      message: "Authentication failed.",
     });
   }
 };
